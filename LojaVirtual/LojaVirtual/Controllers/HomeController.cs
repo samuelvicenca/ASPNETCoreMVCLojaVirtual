@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using LojaVirtual.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using LojaVirtual.Libraries.Email;
+using System.Text;
 
 namespace LojaVirtual.Controllers
 {
@@ -20,13 +23,43 @@ namespace LojaVirtual.Controllers
 
         public IActionResult ContatoAcao()
         {
-            Contato contato = new Contato();
+            try
+            {
+                Contato contato = new Contato();
 
-            contato.Nome = HttpContext.Request.Form["nome"];
-            contato.Email = HttpContext.Request.Form["email"];
-            contato.Texto = HttpContext.Request.Form["texto"];
+                contato.Nome = HttpContext.Request.Form["nome"];
+                contato.Email = HttpContext.Request.Form["email"];
+                contato.Texto = HttpContext.Request.Form["texto"];
 
-            return new ContentResult() { Content = string.Format("Dados recebidos com sucesso!<br/> Nome: {0} <br/>E-mail: {1} <br/>Texto:{2}", contato.Nome, contato.Email, contato.Texto), ContentType = "text/html"};
+                var listaMensagens = new List<ValidationResult>();
+                var contexto = new ValidationContext(contato);
+                bool isValid = Validator.TryValidateObject(contato, contexto, listaMensagens, true);
+
+                if (isValid)
+                {
+                   // ContatoEmail.EnviarContatoPorEmail(contato);
+
+                    ViewData["MSG_S"] = "Mensagem de contato enviado com sucesso!";
+                }
+                else
+                {
+                    StringBuilder sb = new StringBuilder();
+                    foreach (var texto in listaMensagens)
+                    {
+                        sb.Append(texto.ErrorMessage + "<br />");
+                    }
+
+                    ViewData["MSG_E"] = sb.ToString();
+                    ViewData["CONTATO"] = contato;
+                }                
+
+            }
+            catch (Exception)
+            {
+                ViewData["MSG_E"] = "Opps! Tivemos um erro, teste novamente mais tarde!";
+            }
+            
+            return View("Contato");
         }
         public IActionResult Login()
         {

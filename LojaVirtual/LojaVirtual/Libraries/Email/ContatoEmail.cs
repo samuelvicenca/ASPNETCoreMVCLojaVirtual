@@ -20,6 +20,16 @@ namespace LojaVirtual.Libraries.Email
             smtp.Credentials = new NetworkCredential("samuevicenca@gmail.com", "");
             smtp.EnableSsl = true;
 
+            string corpoMsg = string.Format("<h2>Contrato - LojaVirtual</h2>" +
+                "<b>Nome: </b> {0} <br />" +
+                "<b>E-mail: </b> {0} <br />" +
+                "<b>Texto: </b> {0} <br />" +
+                "<br /> E-mail enviado automaticamente do site LojaVirtual.",
+                contato.Nome,
+                contato.Email,
+                contato.Texto
+                );
+
             /*
              * MailMessage -> Contruir a mensagem 
              */
