@@ -31,13 +31,13 @@ namespace LojaVirtual.Controllers
                 contato.Email = HttpContext.Request.Form["email"];
                 contato.Texto = HttpContext.Request.Form["texto"];
 
-                var listaMensagens = new List<ValidationResult>();
+                var listaMensagens = new List<ValidationResult >();
                 var contexto = new ValidationContext(contato);
                 bool isValid = Validator.TryValidateObject(contato, contexto, listaMensagens, true);
 
                 if (isValid)
                 {
-                   // ContatoEmail.EnviarContatoPorEmail(contato);
+                    ContatoEmail.EnviarContatoPorEmail(contato);
 
                     ViewData["MSG_S"] = "Mensagem de contato enviado com sucesso!";
                 }
