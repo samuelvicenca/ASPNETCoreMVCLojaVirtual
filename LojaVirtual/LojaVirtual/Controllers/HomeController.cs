@@ -12,8 +12,15 @@ namespace LojaVirtual.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {   
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index([FromForm]NewsletterEmail newsletter)
+        {            
             return View();
         }
         public IActionResult Contato()
