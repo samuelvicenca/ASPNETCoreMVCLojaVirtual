@@ -7,11 +7,21 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using LojaVirtual.Libraries.Email;
 using System.Text;
+using LojaVirtual.Database;
 
 namespace LojaVirtual.Controllers
 {
     public class HomeController : Controller
     {
+        /*
+         * Injeção de dependencia
+         */
+        private LojaVirtualContext _banco;
+        public HomeController(LojaVirtualContext banco)
+        {
+            _banco = banco;
+        }
+
         [HttpGet]
         public IActionResult Index()
         {   
@@ -20,8 +30,21 @@ namespace LojaVirtual.Controllers
 
         [HttpPost]
         public IActionResult Index([FromForm]NewsletterEmail newsletter)
-        {            
-            return View();
+        {
+            if (ModelState.IsValid)
+            {
+                _banco.NewsletterEmails.Add(newsletter);
+                _banco.SaveChanges();
+
+                TempData["MSG_S"] = "E-mail cadastrado! Agora você vai receber promoções especiais no seu e-mail! Fique atento as novidades!";
+
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View();
+            }
+            
         }
         public IActionResult Contato()
         {
@@ -73,7 +96,14 @@ namespace LojaVirtual.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult CadastroCliente()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CadastroCliente([FromForm]Cliente cliente)
         {
             return View();
         }
