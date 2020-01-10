@@ -14,7 +14,7 @@ namespace LojaVirtual.Controllers
     public class HomeController : Controller
     {
         /*
-         * Injeção de dependencia
+         * Injeção de dependencia do banco
          */
         private LojaVirtualContext _banco;
         public HomeController(LojaVirtualContext banco)
@@ -105,6 +105,16 @@ namespace LojaVirtual.Controllers
         [HttpPost]
         public IActionResult CadastroCliente([FromForm]Cliente cliente)
         {
+            if (ModelState.IsValid)
+            {
+                _banco.Add(cliente);
+                _banco.SaveChanges();
+
+                TempData["MSG_S"] = "Cadastro realizado com sucesso";
+
+                //nameof = gera uma string com o nome do método/propriedade
+                return RedirectToAction(nameof(CadastroCliente));
+            }    
             return View();
         }
 
