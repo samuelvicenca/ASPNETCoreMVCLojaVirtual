@@ -113,7 +113,7 @@ namespace LojaVirtual.Controllers
         {
             Cliente clienteDB = _repositoryCliente.Login(cliente.Email, cliente.Senha);
 
-            if (cliente != null)
+            if (clienteDB != null)
             {
                 _loginCliente.Login(clienteDB);
 
