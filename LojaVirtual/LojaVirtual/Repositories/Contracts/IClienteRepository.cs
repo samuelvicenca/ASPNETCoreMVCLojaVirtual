@@ -4,10 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LojaVirtual.Repository
+namespace LojaVirtual.Repositories.Contracts
+
 {
-    interface IClienteRepository
+    public interface IClienteRepository
     {
+        /*
+         * Expoe os métodos
+         */
         Cliente Login(string Email, string Senha);
 
         //CRUD
@@ -15,7 +19,7 @@ namespace LojaVirtual.Repository
         void Atualizar(Cliente cliente);
         void Excluir(int Id);
         Cliente ObterCliente(int Id);
-        List<Cliente> ObterTodosClientes();
+        IEnumerable<Cliente> ObterTodosClientes();
 
     }
 }

@@ -8,33 +8,41 @@ using System.ComponentModel.DataAnnotations;
 using LojaVirtual.Libraries.Email;
 using System.Text;
 using LojaVirtual.Database;
+using LojaVirtual.Repositories.Contracts;
+using LojaVirtual.Libraries.Login;
+using Microsoft.AspNetCore.Http;
 
 namespace LojaVirtual.Controllers
 {
     public class HomeController : Controller
     {
         /*
-         * Injeção de dependencia do banco
+         * Injeção de dependencia do banco - private LojaVirtualContext _banco;
          */
-        private LojaVirtualContext _banco;
-        public HomeController(LojaVirtualContext banco)
+
+        private IClienteRepository _repositoryCliente;
+        private INewsletterRepository _repositoryNewsletter;
+        private LoginCliente _loginCliente;
+        public HomeController(IClienteRepository repositoryCliente, INewsletterRepository repositoryNewsletter, LoginCliente loginCliente)
         {
-            _banco = banco;
+            _repositoryCliente = repositoryCliente;
+            _repositoryNewsletter = repositoryNewsletter;
+            _loginCliente = loginCliente;
         }
 
         [HttpGet]
         public IActionResult Index()
-        {   
+        {
             return View();
         }
 
         [HttpPost]
         public IActionResult Index([FromForm]NewsletterEmail newsletter)
         {
+
             if (ModelState.IsValid)
             {
-                _banco.NewsletterEmails.Add(newsletter);
-                _banco.SaveChanges();
+                _repositoryNewsletter.Cadastrar(newsletter);
 
                 TempData["MSG_S"] = "E-mail cadastrado! Agora você vai receber promoções especiais no seu e-mail! Fique atento as novidades!";
 
@@ -42,9 +50,11 @@ namespace LojaVirtual.Controllers
             }
             else
             {
-                return View();
+
+                return RedirectToAction(nameof(Index));
+
             }
-            
+
         }
         public IActionResult Contato()
         {
@@ -61,7 +71,7 @@ namespace LojaVirtual.Controllers
                 contato.Email = HttpContext.Request.Form["email"];
                 contato.Texto = HttpContext.Request.Form["texto"];
 
-                var listaMensagens = new List<ValidationResult >();
+                var listaMensagens = new List<ValidationResult>();
                 var contexto = new ValidationContext(contato);
                 bool isValid = Validator.TryValidateObject(contato, contexto, listaMensagens, true);
 
@@ -81,20 +91,54 @@ namespace LojaVirtual.Controllers
 
                     ViewData["MSG_E"] = sb.ToString();
                     ViewData["CONTATO"] = contato;
-                }                
+                }
 
             }
             catch (Exception)
             {
                 ViewData["MSG_E"] = "Opps! Tivemos um erro, teste novamente mais tarde!";
             }
-            
+
             return View("Contato");
         }
+
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Login([FromForm]Cliente cliente)
+        {
+            Cliente clienteDB = _repositoryCliente.Login(cliente.Email, cliente.Senha);
+
+            if (cliente != null)
+            {
+                _loginCliente.Login(clienteDB);
+
+                return new RedirectResult(Url.Action(nameof(Painel)));
+            }
+            else
+            {
+                ViewData["MSG_E"] = "Usuário não encontrado, verifique o e-mail e senha digitado!";
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Painel()
+        {
+            Cliente cliente = _loginCliente.GetCliente();
+            if (cliente != null)
+            {
+                return new ContentResult() { Content = "Usuário " + cliente.Id + ". E-mail" + cliente.Email + " - Idade:" + DateTime.Now.AddYears(cliente.Nascimento.Year) + "Logado!"};
+            }
+            else
+            {
+                return new ContentResult() { Content = "Acesso negado." };
+            }
+        }           
 
         [HttpGet]
         public IActionResult CadastroCliente()
@@ -107,14 +151,13 @@ namespace LojaVirtual.Controllers
         {
             if (ModelState.IsValid)
             {
-                _banco.Add(cliente);
-                _banco.SaveChanges();
+                _repositoryCliente.Cadastrar(cliente);
 
-                TempData["MSG_S"] = "Cadastro realizado com sucesso";
+                TempData["MSG_S"] = "Cadastro realizado com sucesso!";
 
                 //nameof = gera uma string com o nome do método/propriedade
                 return RedirectToAction(nameof(CadastroCliente));
-            }    
+            }
             return View();
         }
 

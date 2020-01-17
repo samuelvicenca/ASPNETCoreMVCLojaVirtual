@@ -1,11 +1,12 @@
 ﻿using LojaVirtual.Database;
 using LojaVirtual.Models;
+using LojaVirtual.Repositories.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LojaVirtual.Repository
+namespace LojaVirtual.Repositories
 {
     public class ClienteRepository : IClienteRepository
     {
@@ -35,7 +36,8 @@ namespace LojaVirtual.Repository
 
         public Cliente Login(string Email, string Senha)
         {
-            throw new NotImplementedException();
+            Cliente cliente = _banco.Clientes.Where(m => m.Email == Email && m.Senha == Senha).FirstOrDefault();
+            return cliente;
         }
 
         public Cliente ObterCliente(int Id)
@@ -43,9 +45,9 @@ namespace LojaVirtual.Repository
             return _banco.Clientes.Find(Id);
         }
 
-        public List<Cliente> ObterTodosClientes()
+        public IEnumerable<Cliente> ObterTodosClientes()
         {
-            throw new NotImplementedException();
+            return _banco.Clientes.ToList();
         }
     }
 }
