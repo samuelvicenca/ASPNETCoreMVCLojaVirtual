@@ -37,6 +37,7 @@ namespace LojaVirtual
             services.AddHttpContextAccessor(); 
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<INewsletterRepository, NewsletterRepository>();
+            services.AddScoped<IColaboradorRepository, ColaboradorRepository>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -46,7 +47,7 @@ namespace LojaVirtual
             });
 
             /*
-             * Session - COnfiguração 
+             * Session - Configuração 
              */
             services.AddMemoryCache(); //Guardar os dados na memória
             services.AddSession(options => { 
@@ -55,6 +56,7 @@ namespace LojaVirtual
 
             services.AddScoped<Sessao>();
             services.AddScoped<LoginCliente>();
+            services.AddScoped<LoginColaborador>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -89,6 +91,10 @@ namespace LojaVirtual
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "areas",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                    );
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

@@ -22,7 +22,6 @@ C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\bin\Debu
 C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\bin\Debug\netcoreapp2.2\LojaVirtual.pdb
 C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\bin\Debug\netcoreapp2.2\LojaVirtual.Views.dll
 C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\bin\Debug\netcoreapp2.2\LojaVirtual.Views.pdb
-C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csprojAssemblyReference.cache
 C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.Views.pdb
 C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.CopyComplete
 C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Home\Contato.cshtml.g.cs
@@ -65,3 +64,11 @@ D:\Training\ASPNETCoreMVCLojaVirtual\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVi
 D:\Training\ASPNETCoreMVCLojaVirtual\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.pdb
 D:\Training\ASPNETCoreMVCLojaVirtual\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.CopyComplete
 C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Home\Login.cshtml.g.cs
+C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Home\RecuperarSenha.cshtml.g.cs
+C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Home\CadastrarNovaSenha.cshtml.g.cs
+C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csprojAssemblyReference.cache
+C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Shared\_Layout.cshtml.g.cs
+C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\_ViewImports.cshtml.g.cs
+C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\_ViewStart.cshtml.g.cs
+C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Home\Painel.cshtml.g.cs
