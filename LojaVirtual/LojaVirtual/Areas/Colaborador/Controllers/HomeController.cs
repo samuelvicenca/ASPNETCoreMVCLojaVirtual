@@ -47,7 +47,8 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         [ColaboradorAutorizacao]
         public IActionResult Logout()
         {
-
+            _loginColaborador.Logout();
+            return RedirectToAction("Login", "Home");
         }
 
         public IActionResult RecuperarSenha()
