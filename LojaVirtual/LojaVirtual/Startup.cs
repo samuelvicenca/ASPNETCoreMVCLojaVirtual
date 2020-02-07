@@ -16,6 +16,9 @@ using LojaVirtual.Repositories.Contracts;
 using LojaVirtual.Repositories;
 using LojaVirtual.Libraries.Sessao;
 using LojaVirtual.Libraries.Login;
+using System.Net;
+using System.Net.Mail;
+using LojaVirtual.Libraries.Email;
 
 namespace LojaVirtual
 {
@@ -39,6 +42,23 @@ namespace LojaVirtual
             services.AddScoped<INewsletterRepository, NewsletterRepository>();
             services.AddScoped<IColaboradorRepository, ColaboradorRepository>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+
+            /*
+             * SMTP
+             */
+            services.AddScoped<SmtpClient>(options=> {
+                SmtpClient smtp = new SmtpClient()
+                {
+                    Host = Configuration.GetValue<string>("Email:ServerSMTP"),
+                    Port = Configuration.GetValue<int>("Email:ServerPort"),
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(Configuration.GetValue<string>("Email:Username"), Configuration.GetValue<string>("Email:Password")),
+                    EnableSsl = true
+                };
+
+                return smtp;
+            });
+            services.AddScoped<GerenciarEmail>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

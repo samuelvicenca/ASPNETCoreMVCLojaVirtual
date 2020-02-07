@@ -22,14 +22,16 @@ namespace LojaVirtual.Models
         [EmailAddress(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E004")]
         public string Email { get; set; }
 
+        [Display(Name ="Senha")]
         [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
         [MinLength(4, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E002")]
         public string Senha { get; set; }
 
+        [Display(Name="Confirmar senha")]
         [NotMapped] //Não é criado no banco de dados 
+        [Compare("Senha", ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E005")]
         public string ConfirmacaoSenha { get; set; }
-
-        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
+        
         public string Tipo { get; set; }
         /*
         * TIPO
