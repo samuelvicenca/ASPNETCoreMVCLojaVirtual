@@ -19,6 +19,7 @@ using LojaVirtual.Libraries.Login;
 using System.Net;
 using System.Net.Mail;
 using LojaVirtual.Libraries.Email;
+using LojaVirtual.Libraries.Login.Middleware;
 
 namespace LojaVirtual
 {
@@ -109,6 +110,7 @@ namespace LojaVirtual
             app.UseStaticFiles();
             app.UseStaticFiles();
             app.UseSession();
+            app.UseMiddleware<ValidateAntiForgeryTokenMiddleware>();
 
             app.UseMvc(routes =>
             {

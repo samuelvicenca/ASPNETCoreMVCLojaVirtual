@@ -122,5 +122,23 @@ namespace LojaVirtual.Libraries.Lang {
                 return ResourceManager.GetString("MSG_S002", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Senha enviada para o e-mail do colaborador com sucesso!.
+        /// </summary>
+        public static string MSG_S003 {
+            get {
+                return ResourceManager.GetString("MSG_S003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registro atualizado com sucesso!.
+        /// </summary>
+        public static string MSG_S004 {
+            get {
+                return ResourceManager.GetString("MSG_S004", resourceCulture);
+            }
+        }
     }
 }

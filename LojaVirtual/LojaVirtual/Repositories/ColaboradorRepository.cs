@@ -1,6 +1,7 @@
 ﻿using LojaVirtual.Database;
 using LojaVirtual.Models;
 using LojaVirtual.Repositories.Contracts;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -19,18 +20,26 @@ namespace LojaVirtual.Repositories
             _banco = banco;
             _conf = configuration;
         }
-        public void Atualizar(Colaborador colaborador)
-        {
-            _banco.Update(colaborador);
-            _banco.SaveChanges();
-        }
-
         public void Cadastrar(Colaborador colaborador)
         {
             _banco.Add(colaborador);
             _banco.SaveChanges();
         }
+        public void Atualizar(Colaborador colaborador)
+        {
+            _banco.Update(colaborador);
+            _banco.Entry(colaborador).Property(s => s.Senha).IsModified = false;
+            _banco.SaveChanges();
+        }
+        public void AtualizarSenha(Colaborador colaborador)
+        {
+            _banco.Update(colaborador);
+            _banco.Entry(colaborador).Property(s => s.Nome).IsModified = false;
+            _banco.Entry(colaborador).Property(s => s.Email).IsModified = false;
+            _banco.Entry(colaborador).Property(s => s.Tipo).IsModified = false;
 
+            _banco.SaveChanges();
+        }
         public void Excluir(int Id)
         {
             Colaborador colaborador = ObterColaborador(Id);
@@ -60,6 +69,11 @@ namespace LojaVirtual.Repositories
 
             int NumeroPagina = pagina ?? 1;
             return _banco.Colaboradores.Where(a => a.Tipo != "G").ToPagedList(NumeroPagina, RegistroPorPagina);
+        }
+
+        public List<Colaborador> ObterColaboradorPorEmail(string email)
+        {
+            return _banco.Colaboradores.Where(a => a.Email == email).AsNoTracking().ToList();
         }
     }
 }
