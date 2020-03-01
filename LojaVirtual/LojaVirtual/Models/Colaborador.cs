@@ -36,9 +36,7 @@ namespace LojaVirtual.Models
 
         public string Tipo { get; set; }
         /*
-        * TIPO
-        * - C = Comum
-        * - G = Gerente
+        * TIPO = ColaboradorTipoConstant
         */
     }
 }
