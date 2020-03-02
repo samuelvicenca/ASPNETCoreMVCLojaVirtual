@@ -48,11 +48,11 @@
                         <td>
                             @if (cliente.Situacao == "A")
                             {
-                                <a asp-action="GerarSenha" asp-route-id="@cliente.Id" class="btn btn-secondary">Desativar</a>
+                                <a asp-action="AtivarDesativar" asp-route-id="@cliente.Id" class="btn btn-danger">Desativar</a>
                             }
                             else
                             {
-                                <a asp-action="Atualizar" asp-route-id="@cliente.Id" class="btn btn-secondary">Ativar</a>
+                                <a asp-action="AtivarDesativar" asp-route-id="@cliente.Id" class="btn btn-secondary">Ativar</a>
                             }
                         </td>
                     </tr>

@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 namespace LojaVirtual.Libraries.Filtro
 {
     public class ValidateHttpRefererAttribute : Attribute, IActionFilter
-    {  
+    {
         public void OnActionExecuting(ActionExecutingContext context)
         {
             //Executado antes passar pelo controlador
             string referer = context.HttpContext.Request.Headers["Referer"].ToString();
             if (string.IsNullOrEmpty(referer))
             {
-                context.Result = new ContentResult() { Content = "Acesso negado" }; 
+                context.Result = new ContentResult() { Content = "Acesso negado!" };
             }
             else
             {
@@ -30,13 +30,10 @@ namespace LojaVirtual.Libraries.Filtro
                 }
             }
         }
-
         public void OnActionExecuted(ActionExecutedContext context)
         {
-            //Executador após passar pelo controlador 
-            throw new NotImplementedException();
-        }
+            //Executado após passar pelo controlador
 
-      
+        }
     }
 }
