@@ -1,5 +1,6 @@
 ﻿using LojaVirtual.Database;
 using LojaVirtual.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -34,12 +35,14 @@ namespace LojaVirtual.Repositories.Contracts
 
         public void Excluir(int Id)
         {
-            throw new NotImplementedException();
+            Produto produto = ObterProduto(Id);
+            _banco.Remove(produto);
+            _banco.SaveChanges();
         }
 
         public Produto ObterProduto(int Id)
         {
-            return _banco.Produtos.Find(Id);
+            return _banco.Produtos.Include(a => a.Imagens).Where(a => a.Id == Id).FirstOrDefault();
         }      
         public IPagedList<Produto> ObterTodosProdutos(int? pagina, string pesquisa)
         {
@@ -48,13 +51,12 @@ namespace LojaVirtual.Repositories.Contracts
             int NumeroPagina = pagina ?? 1;
 
             var bancoProduto = _banco.Produtos.AsQueryable();
-
             if (!string.IsNullOrEmpty(pesquisa))
             {
                 bancoProduto = bancoProduto.Where(a => a.Nome.Contains(pesquisa.Trim()));
             }
 
-            return _banco.Produtos.ToPagedList(NumeroPagina, RegistroPorPagina);
+            return bancoProduto.Include(a => a.Imagens).ToPagedList<Produto>(NumeroPagina, RegistroPorPagina);
         }     
     }
 }
