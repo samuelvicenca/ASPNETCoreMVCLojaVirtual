@@ -1,5 +1,7 @@
-﻿using System;
+﻿using LojaVirtual.Libraries.Lang;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,15 +12,37 @@ namespace LojaVirtual.Models
     {
         //PK
         public int Id { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
         public string Nome { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
+        [Display(Name = "Descrição")]
         public string Descricao { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
+        [Display(Name = "Preço")]      
         public decimal Valor { get; set; }
+
+        [Range(0, 1000000, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E006")]
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]      
         public int Quantidade { get; set; }
 
         //Frete - Correios
+        [Range(0.001, 30, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E006")]
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]        
         public double Peso { get; set; }
+
+        [Range(11, 105, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E006")]
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]        
         public int Largura { get; set; }
+
+        [Range(2, 105, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E006")]
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]        
         public int Altura { get; set; }
+
+        [Range(16, 105, ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E006")]
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]        
         public int Comprimento { get; set; }
 
         /* 
@@ -28,6 +52,8 @@ namespace LojaVirtual.Models
          */
 
         //Banco de dados - Relacionamento entre Tabela
+        [Display(Name = "Categoria")]
+        [Required(ErrorMessageResourceType = typeof(Mensagem), ErrorMessageResourceName = "MSG_E001")]
         public int CategoriaId { get; set; }
 
         //POO - Associações entre objetos 
