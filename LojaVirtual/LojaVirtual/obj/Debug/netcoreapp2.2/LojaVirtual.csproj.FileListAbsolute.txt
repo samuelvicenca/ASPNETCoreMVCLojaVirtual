@@ -96,3 +96,4 @@ D:\Training\ASPNETCoreMVCLojaVirtual\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVi
 C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Cliente\Index.cshtml.g.cs
 C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Produto\Index.cshtml.g.cs
 C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Produto\Cadastrar.cshtml.g.cs
+C:\Treinamento\ASP.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Areas\Colaborador\Views\Produto\Atualizar.cshtml.g.cs
