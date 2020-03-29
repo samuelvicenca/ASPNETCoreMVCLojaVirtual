@@ -35,4 +35,9 @@
     </EmbeddedResource>
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Uploads\Temp\" />
+  </ItemGroup>
+
 </Project>
