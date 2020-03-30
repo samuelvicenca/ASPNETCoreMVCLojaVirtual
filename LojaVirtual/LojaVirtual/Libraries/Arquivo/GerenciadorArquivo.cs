@@ -18,8 +18,9 @@ namespace LojaVirtual.Libraries.Arquivo
             {
                 file.CopyTo(stream);
             }
-            
-            return Path.Combine("/uploads/temp", NomeArquivo).Replace("\\", "/");
+
+            return Path.Combine("/uploads/temp", NomeArquivo);
+            //.Replace("\\", "/");
 
         }
 
