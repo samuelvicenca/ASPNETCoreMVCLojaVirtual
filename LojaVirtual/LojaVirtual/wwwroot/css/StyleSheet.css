@@ -1,5 +1,6 @@
 ﻿body {
 }
+
 .field-validation-error {
     color: red;
     display: block;
@@ -8,18 +9,26 @@
 .Imagens .btn-imagem-excluir {
     width: 100%;
     margin-bottom: 30px;
-    border-top-left-radius: 0px; 
+    border-top-left-radius: 0px;
     border-top-right-radius: 0px;
 }
+
+.Imagens .btn-ocultar {
+    display: none;
+}
+
 .Imagens div {
     text-align: center;
 }
+
 .Imagens .img-thumbnail {
     width: 100%;
 }
-.input-file {
+
+.Imagens .input-file {
     display: none;
 }
-.img-upload {
+
+.Imagens .img-upload {
     cursor: pointer;
 }
