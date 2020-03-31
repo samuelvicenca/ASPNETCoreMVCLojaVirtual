@@ -19,8 +19,7 @@ namespace LojaVirtual.Libraries.Arquivo
                 file.CopyTo(stream);
             }
 
-            return Path.Combine("/uploads/temp", NomeArquivo);
-            //.Replace("\\", "/");
+            return Path.Combine("/uploads/temp", NomeArquivo).Replace("\\", "/");           
 
         }
 
@@ -36,6 +35,16 @@ namespace LojaVirtual.Libraries.Arquivo
             {
                 return false;
             }
+        }
+
+        public static void MoverImagensProduto(List<string> ListaCaminhoTemp, string ProdutoId)
+        {
+            var CaminhoDefinitivoPastaProduto = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", ProdutoId);
+            if (!Directory.Exists(CaminhoDefinitivoPastaProduto))
+            {
+                Directory.CreateDirectory(CaminhoDefinitivoPastaProduto);
+            }
+
         }
     }
 }
