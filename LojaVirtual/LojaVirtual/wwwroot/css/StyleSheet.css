@@ -6,9 +6,12 @@
     display: block;
 }
 
-.Imagens .btn-imagem-excluir {
-    width: 100%;
+.Imagens .col-md-2 {
     margin-bottom: 30px;
+}
+
+.Imagens .btn-imagem-excluir {
+    width: 100%;    
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
 }
@@ -31,4 +34,8 @@
 
 .Imagens .img-upload {
     cursor: pointer;
+}
+
+.Imagens input[name=imagem] {
+    display: none;
 }
