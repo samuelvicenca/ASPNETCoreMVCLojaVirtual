@@ -45,6 +45,10 @@ namespace LojaVirtual.Libraries.Arquivo
                 Directory.CreateDirectory(CaminhoDefinitivoPastaProduto);
             }
 
+            foreach (var Caminho in ListaCaminhoTemp)
+            {
+                var CaminhoAbsoluto = 
+            }
         }
     }
 }
