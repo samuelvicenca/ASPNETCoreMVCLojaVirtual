@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LojaVirtual.Repositories.Contracts
 {
-    interface IImagemRepository
+    public interface IImagemRepository
     {
         void Cadastrar(Imagem imagem);
         void Excluir(int Id);
