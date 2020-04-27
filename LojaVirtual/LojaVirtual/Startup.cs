@@ -44,7 +44,7 @@ namespace LojaVirtual
             services.AddScoped<IColaboradorRepository, ColaboradorRepository>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
-            services.AddScoped<ImagemRepository, ImagemRepository>();
+            services.AddScoped<IImagemRepository, ImagemRepository>();
 
             /*
              * SMTP

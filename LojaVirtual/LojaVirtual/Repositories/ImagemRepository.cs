@@ -17,15 +17,18 @@ namespace LojaVirtual.Repositories
             _banco = banco;
         }
 
-        public void CadastrarImagens(List<string> ListaCaminhoDef)
+        public void CadastrarImagens(List<Imagem> ListaImagens, int ProdutoId)
         {
-            //Salvar o caminho definido no banco de dados
-            foreach (var CaminhoDef in ListaCaminhoDef)
+            /*
+             * Salvar o caminho definido no banco de dados
+             */
+            if (ListaImagens != null && ListaImagens.Count > 0)
             {
-                var Imagem = new Imagem() { Caminho = CaminhoDef, ProdutoId = produto.Id };
-                Cadastrar(Imagem);
+                foreach (var Imagem in ListaImagens)
+                {
+                    Cadastrar(Imagem);
+                }
             }
-
         }
         public void Cadastrar(Imagem imagem)
         {
