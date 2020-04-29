@@ -53,26 +53,40 @@ namespace LojaVirtual.Libraries.Arquivo
             {
                 if (!string.IsNullOrEmpty(CaminhoTemp))
                 {
-                    // /uploads/temp/mouse-cosair.jpg
                     var NomeArquivo = Path.GetFileName(CaminhoTemp);
+                    var CaminhoDef = Path.Combine("/uploads", ProdutoId.ToString(), NomeArquivo).Replace("\\", "/");
 
-                    var CaminhoAbsolutoTemp = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/temp", NomeArquivo);
-                    var CaminhoAbsolutoDef = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", ProdutoId.ToString(), NomeArquivo);
-
-                    if (File.Exists(CaminhoAbsolutoTemp))
+                    if (CaminhoDef != CaminhoTemp)
                     {
-                        //Mover
-                        File.Copy(CaminhoAbsolutoTemp, CaminhoAbsolutoDef);
-                        if (File.Exists(CaminhoAbsolutoDef))
-                        {
-                            File.Delete(CaminhoAbsolutoTemp);
-                        }
+                        var CaminhoAbsolutoTemp = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/temp", NomeArquivo);
+                        var CaminhoAbsolutoDef = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", ProdutoId.ToString(), NomeArquivo);
 
-                        ListaImagensDef.Add(new Imagem() { Caminho = Path.Combine("/uploads", ProdutoId.ToString(), NomeArquivo).Replace("\\", "/"), ProdutoId = ProdutoId });
+                        if (File.Exists(CaminhoAbsolutoTemp))
+                        {
+                            //Deleta arquivo no caminho de destino.
+                            if (File.Exists(CaminhoAbsolutoDef))
+                            {
+                                File.Delete(CaminhoAbsolutoDef);
+                            }
+                            //Copia arquivo da pasta temporaria para destino.
+                            File.Copy(CaminhoAbsolutoTemp, CaminhoAbsolutoDef);
+
+                            //Deleta Arquivo da pasta temporaria.
+                            if (File.Exists(CaminhoAbsolutoDef))
+                            {
+                                File.Delete(CaminhoAbsolutoTemp);
+                            }
+
+                            ListaImagensDef.Add(new Imagem() { Caminho = Path.Combine("/uploads", ProdutoId.ToString(), NomeArquivo).Replace("\\", "/"), ProdutoId = ProdutoId });
+                        }
+                        else
+                        {
+                            return null;
+                        }
                     }
                     else
                     {
-                        return null;
+                        ListaImagensDef.Add(new Imagem() { Caminho = Path.Combine("/uploads", ProdutoId.ToString(), NomeArquivo).Replace("\\", "/"), ProdutoId = ProdutoId });
                     }
                 }
             }
