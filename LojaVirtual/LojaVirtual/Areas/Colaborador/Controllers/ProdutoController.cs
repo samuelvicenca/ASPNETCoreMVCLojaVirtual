@@ -87,5 +87,19 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             }
 
         }
+
+        [HttpGet]
+        public IActionResult Excluir(int id) 
+        {
+            //Ler o produto, Deletar imagens da pasta, imagens do banco, deletar o produto
+            Produto produto = _produtoRepository.ObterProduto(id);
+            GerenciadorArquivo.ExcluirImagesProduto(produto.Imagens.ToList());
+            _imagemRepository.ExcluirImagensDoProduto(id);
+            _produtoRepository.Excluir(id);
+
+            TempData["MSG_S"] = Mensagem.MSG_S002;
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
