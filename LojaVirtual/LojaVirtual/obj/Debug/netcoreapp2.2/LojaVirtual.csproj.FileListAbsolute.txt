@@ -201,3 +201,4 @@ C:\X\.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2
 C:\X\.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.genruntimeconfig.cache
 C:\X\.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csproj.CopyComplete
 C:\X\.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\LojaVirtual.csprojAssemblyReference.cache
+C:\X\.NET\ASPNETCoreMVCLojaVirtual\LojaVirtual\LojaVirtual\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Components\Menu\Default.cshtml.g.cs

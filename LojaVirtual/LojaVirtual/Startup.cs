@@ -20,6 +20,7 @@ using System.Net;
 using System.Net.Mail;
 using LojaVirtual.Libraries.Email;
 using LojaVirtual.Libraries.Login.Middleware;
+using Microsoft.Extensions.Options;
 
 namespace LojaVirtual
 {
@@ -82,7 +83,9 @@ namespace LojaVirtual
             services.AddScoped<LoginCliente>();
             services.AddScoped<LoginColaborador>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options => {
+                options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(X => "O campo não pode ser nulo!");
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             /*
              * Conexão com banco de dados 
