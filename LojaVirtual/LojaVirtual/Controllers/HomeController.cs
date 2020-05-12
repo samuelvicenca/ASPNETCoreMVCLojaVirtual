@@ -12,6 +12,7 @@ using LojaVirtual.Repositories.Contracts;
 using LojaVirtual.Libraries.Login;
 using Microsoft.AspNetCore.Http;
 using LojaVirtual.Libraries.Filtro;
+using System.Security.Cryptography.X509Certificates;
 
 namespace LojaVirtual.Controllers
 {
@@ -58,7 +59,10 @@ namespace LojaVirtual.Controllers
                 return RedirectToAction(nameof(Index));
 
             }
-
+        }
+        public IActionResult Categoria()
+        {
+            return View();
         }
         public IActionResult Contato()
         {
