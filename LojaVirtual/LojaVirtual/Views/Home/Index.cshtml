@@ -73,6 +73,8 @@
             ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
+    @if (Model.lista.Count > 0)
+    {
 
     <div class="container" id="code_prod_complex">
         <div class="row">
@@ -103,7 +105,9 @@
                 </div> <!-- col // -->
             }
         </div> <!-- row.// -->
+        @Html.PagedListPager((IPagedList)Model.lista, pagina => Url.Action("Index", new { pagina }))
     </div>
+    }
 </main>
 
 @{
@@ -117,7 +121,7 @@
      */
 }
 
-@using (Html.BeginForm(null, null, null, FormMethod.Post, false, new { @action = @Url.Action("index", "home") + "#formulario" }))
+@using (Html.BeginForm(null, null, null, FormMethod.Post, true, new { @action = @Url.Action("index", "home") + "#formulario" }))
 {
     <div class="container" id="formulario">
         <div class="row">
