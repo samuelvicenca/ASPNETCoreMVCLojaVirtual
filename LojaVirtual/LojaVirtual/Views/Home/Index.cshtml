@@ -1,7 +1,7 @@
-﻿@model LojaVirtual.Models.ViewModels.IndexViewModel
-
+﻿@model NewsletterEmail
 @{
     ViewData["Title"] = "Index";
+
 }
 
 <main role="main">
@@ -72,42 +72,8 @@
     <!-- Lista de Produtos
             ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    @if (Model.lista.Count > 0)
-    {
-
-    <div class="container" id="code_prod_complex">
-        <div class="row">
-            @foreach (var produto in Model.lista)
-            {
-                <div class="col-md-4">
-                    <figure class="card card-product">
-                        <div class="img-wrap">
-                            @if (produto.Imagens != null && produto.Imagens.Count() > 0)
-                            {
-                                <img src="@produto.Imagens.ElementAt(0).Caminho" />
-                            }
-                            else
-                            {
-                                <img src="~/img/imagem-produto.png">
-                            }
-                        </div>
-                        <figcaption class="info-wrap">
-                            <h4 class="title">@produto.Nome</h4>
-                        </figcaption>
-                        <div class="bottom-wrap">
-                            <a href="" class="btn btn-sm btn-primary float-right">Adicionar Carrinho</a>
-                            <div class="price-wrap h5">
-                                <span class="price-new">@produto.Valor.ToString("C")</span>
-                            </div> <!-- price-wrap.// -->
-                        </div> <!-- bottom-wrap.// -->
-                    </figure>
-                </div> <!-- col // -->
-            }
-        </div> <!-- row.// -->
-        @Html.PagedListPager((IPagedList)Model.lista, pagina => Url.Action("Index", new { pagina }))
-    </div>
-    }
+    <!-- TODO - Chamar Componente -->
+    <vc:produto-listagem></vc:produto-listagem>
 </main>
 
 @{
@@ -117,12 +83,20 @@
      */
 
     /*
-     * URL: #Fragmento -> Faz link do tipo ancora
+     * URL: #Fragmento
+     */
+
+    /*
+     * Primeiro formulário:
+     * @using (Html.BeginForm("index", "home", FormMethod.Post))
      */
 }
 
+
+
 @using (Html.BeginForm(null, null, null, FormMethod.Post, true, new { @action = @Url.Action("index", "home") + "#formulario" }))
 {
+
     <div class="container" id="formulario">
         <div class="row">
             <div class="col-sm-8 offset-sm-2">
@@ -141,15 +115,18 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa  fa-envelope "></i></span>
                         </div>
-                        @Html.EditorFor(m => m.newsletter.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
-                    <span style="color: red;">@Html.ValidationMessageFor(m => m.newsletter.Email)</span>
+                    <span style="color: red;">@Html.ValidationMessageFor(m => m.Email)</span>
                 </div>
             </div>
             <div class="col-sm-2">
                 <br />
                 <button class="subscribe btn btn-primary btn-block" type="submit" style="margin-top: 7px"> Cadastrar-se </button>
             </div>
+
+
         </div>
     </div>
+
 }

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LojaVirtual.Libraries.Email;
 using LojaVirtual.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using LojaVirtual.Libraries.Email;
 using System.Text;
 using LojaVirtual.Database;
 using LojaVirtual.Repositories.Contracts;
@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Http;
 using LojaVirtual.Libraries.Filtro;
 using System.Security.Cryptography.X509Certificates;
 using LojaVirtual.Models.ViewModels;
+using Microsoft.AspNetCore.Rewrite.Internal.UrlMatches;
 
 namespace LojaVirtual.Controllers
 {
@@ -39,14 +40,13 @@ namespace LojaVirtual.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(int? pagina, string pesquisa)
-        {
-            var viewModel = new IndexViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa)};
-            return View(viewModel);
+        public IActionResult Index()
+        {            
+            return View();
         }
 
         [HttpPost]
-        public IActionResult Index(int? pagina, string pesquisa, [FromForm]NewsletterEmail newsletter)
+        public IActionResult Index([FromForm]NewsletterEmail newsletter)
         {
             if (ModelState.IsValid)
             {
@@ -57,9 +57,8 @@ namespace LojaVirtual.Controllers
                 return RedirectToAction(nameof(Index));
             }
             else
-            {
-                var viewModel = new IndexViewModel() { lista = _produtoRepository.ObterTodosProdutos(pagina, pesquisa) };
-                return View(viewModel);
+            {                
+                return View();
 
             }
         }
@@ -105,9 +104,9 @@ namespace LojaVirtual.Controllers
                 }
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                ViewData["MSG_E"] = "Opps! Tivemos um erro, teste novamente mais tarde!";
+                ViewData["MSG_E"] = "Opps! Tivemos um erro, tente novamente mais tarde!";
             }
 
             return View("Contato");
@@ -141,8 +140,8 @@ namespace LojaVirtual.Controllers
         [ClienteAutorizacao]
         public IActionResult Painel()
         {
-            return new ContentResult() { Content = "Painel" };
-        }           
+            return new ContentResult() { Content = "Este é o Painel do Cliente!" };
+        }
 
         [HttpGet]
         public IActionResult CadastroCliente()
